@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
         'Content-Type': 'application/json'
     }
     response = HTTParty.post('https://doxly-jira.atlassian.net/rest/auth/1/session', body: login_args.to_json, headers: headers)
+    debugger
     session[:cookie_name] = response.parsed_response["session"]["name"]
     session[:cookie_value] = response.parsed_response["session"]["value"]
   end
