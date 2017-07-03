@@ -1,0 +1,22 @@
+#groomly-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: $col-light-gray;
+  #groomly-navbar {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    background-color: $col-watermelon;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid $col-dark-gray;
+    .name {
+      font-size: 48px;
+      font-family: Roboto;
+      color: $white;
+      font-weight: bold;
+    }
+  }
+}
