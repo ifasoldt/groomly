@@ -8,7 +8,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: $col-dark-gray;
+  color: $col-gray-background;
+  overflow: auto;
 
   .login-form, .registration-form {
     width: 500px;
@@ -19,8 +20,8 @@
       width: 100%;
       padding: 0;
       input {
-        background-color: $col-watermelon;
-        border: 1px solid $col-watermelon;
+        background-color: $col-pink-primary;
+        border: 1px solid $col-pink-primary;
         border-radius: 4px;
       }
     }

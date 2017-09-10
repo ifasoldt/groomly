@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:email] = @user.email
       login_to_jira(@user)
+      redirect_to tickets_path
     else
       render :new and return
     end

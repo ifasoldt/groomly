@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_action :require_user
+
   def index
     headers = {
         'Accept': 'application/json',
@@ -12,17 +13,41 @@ class TicketsController < ApplicationController
       fields = issue['fields']
       ticket = Ticket.find_or_create_by(jira_key: issue['key'])
       @tickets << {
-        id: issue['id'],
+        id: ticket.id,
+        jira_id: issue['id'],
         key: issue["key"],
         summary: fields['summary'],
         created: fields["created"],
         priority: fields["priority"]["name"],
-        description: fields["description"],
+        description: markdown.render(fields["description"] || ''),
         creator: fields["creator"]['name'],
         subtasks: fields["subtasks"],
         comments: fields['comment']['comments'],
         votes: ticket.votes
       }
     end
+  end
+
+  def show
+    @ticket_object = Ticket.find(params[:id])
+    fields = @ticket_object.jira_ticket_object(session[:cookie_name], session[:cookie_value])['fields']
+    @ticket = {
+      id: @ticket_object.id,
+      key: @ticket_object.jira_key,
+      summary: fields['summary'],
+      created: fields["created"],
+      priority: fields["priority"]["name"],
+      description: markdown.render(fields["description"] || ''),
+      creator: fields["creator"]['name'],
+      subtasks: fields["subtasks"],
+      comments: fields['comment']['comments'],
+      votes: @ticket_object.votes
+    }
+  end
+
+  private
+
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
   end
 end

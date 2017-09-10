@@ -1,0 +1,25 @@
+<div class="sidebar">
+
+  <div class="title">
+    <%= ticket[:key] %> <%= ticket[:summary] %>
+  </div>
+  <div class="description">
+    <div class="description-title">
+      Description:
+    </div>
+    <div class="description-body">
+      <%= ticket[:description].html_safe %>
+    </div>
+  </div>
+  <div class="comments">
+    <%= ticket[:comment] %>
+  </div>
+  <div class="votes">
+    <% ticket[:votes].each do |vote| %>
+      <%= vote %>
+    <% end %>
+  </div>
+  <div class="currently-logged-in">
+
+  </div>
+</div>

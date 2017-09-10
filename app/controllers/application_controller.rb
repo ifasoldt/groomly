@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def login_to_jira
+  def login_to_jira(user)
     login_args = {
-                  'username': @user.jira_username,
-                  'password': @user.jira_password
+                  'username': user.jira_username,
+                  'password': user.jira_password
                 }
     headers = {
         'Accept': 'application/json',
