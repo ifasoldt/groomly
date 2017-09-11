@@ -25,6 +25,8 @@ class TicketsController < ApplicationController
         comments: fields['comment']['comments'],
         votes: ticket.votes
       }
+      @logged_in_users = User.where(currently_logged_in: true)
+      @ticket_object = Ticket.find(@tickets.first[:id])
     end
   end
 
@@ -43,6 +45,7 @@ class TicketsController < ApplicationController
       comments: fields['comment']['comments'],
       votes: @ticket_object.votes
     }
+    @logged_in_users = User.where(currently_logged_in: true)
   end
 
   private

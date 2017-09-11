@@ -1,0 +1,5 @@
+<div class="vote-cards">
+  <% ['0', '1', '2', '3', '5', '8', '13', '21', '?'].each do |value| %>
+    <%= render 'vote_card', value: value, ticket: ticket %>
+  <% end %>
+</div>

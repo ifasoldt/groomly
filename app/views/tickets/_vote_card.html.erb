@@ -1,3 +1,5 @@
-<div class="vote-card">
-  <%= value %>
-</div>
+<%= link_to ticket_votes_path(ticket, value: value), method: :post, remote: true do %>
+  <div class="vote-card <%= 'selected-vote-card' if ticket.votes.find_by(user_id: @current_user.id)&.value.to_s == value %>">
+    <%= value %>
+  </div>
+<% end %>

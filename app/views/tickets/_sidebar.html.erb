@@ -15,11 +15,27 @@
     <%= ticket[:comment] %>
   </div>
   <div class="votes">
-    <% ticket[:votes].each do |vote| %>
-      <%= vote %>
+    <div class="vote-title">
+      Votes:
+    </div>
+    <% @logged_in_users.each do |user| %>
+      <% vote = ticket[:votes].find_by(user_id: user.id) || Vote.new(user_id: user.id, ticket_id: ticket[:id]) %>
+      <div class="vote">
+        <div class="username">
+          <%= user.first_name %>
+        </div>
+        <div class="vote-value">
+          <%= vote.value %>
+        </div>
+      </div>
     <% end %>
-  </div>
-  <div class="currently-logged-in">
-
+    <% ticket[:votes].where.not(user_id: @logged_in_users.map(&:id)).each do |vote| %>
+      <div class="username">
+        <% vote.user.first_name %>
+      </div>
+      <div class="vote-value">
+        <% vote.value %>
+      </div>
+    <% end %>
   </div>
 </div>

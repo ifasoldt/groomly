@@ -1,10 +1,6 @@
 <div id="tickets-container">
   <div class="left-box">
-    <div class="vote-cards">
-      <% ['0', '1', '2', '3', '5', '8', '13', '21', '?'].each do |value| %>
-        <%= render 'vote_card', value: value %>
-      <% end %>
-    </div>
+    <%= render 'vote_cards', ticket: @ticket_object %>
     <div class="tickets">
       <% @tickets.each_with_index do |ticket, i| %>
         <%= link_to ticket_path(ticket[:id]), id: "ticket-#{ticket[:id]}", class:"ticket-row #{'selected' if i == 0}", remote: true do %>

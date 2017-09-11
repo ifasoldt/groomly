@@ -1,1 +1,1 @@
-Tickets.show("<%= escape_javascript(render('sidebar', ticket: @ticket)) %>", "<%= @ticket[:id] %>")
+Tickets.show("<%= escape_javascript(render('sidebar', ticket: @ticket)) %>", "<%= @ticket[:id] %>", "<%= escape_javascript(render('vote_cards', ticket: @ticket_object)) %>" )
